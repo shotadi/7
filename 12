@@ -1,0 +1,188 @@
+SERVER
+importjava.io.BufferedReader; 
+importjava.io.BufferedWriter; 
+importjava.io.InputStream; 
+importjava.io.InputStreamReader; 
+importjava.io.OutputStream; 
+importjava.io.OutputStreamWriter; 
+importjava.net.ServerSocket; 
+importjava.net.Socket;
+public class Server
+{
+private static Socket socket;
+public static void main(String[] args)
+{
+try
+{
+int port = 25000;
+ServerSocketserverSocket = new ServerSocket(port); 
+System.out.println("Server Started and listening to the port 25000"); 
+while(true)
+{
+socket = serverSocket.accept(); 
+InputStream is = socket.getInputStream();
+InputStreamReaderisr = new InputStreamReader(is); 
+BufferedReaderbr = new BufferedReader(isr);
+String number = br.readLine(); 
+System.out.println("Message received from client is "+number);
+String returnMessage;
+try
+{
+intnumberInIntFormat = Integer.parseInt(number); 
+intreturnValue = numberInIntFormat*2;
+returnMessage = String.valueOf(returnValue) + "\n";
+
+}
+
+catch(NumberFormatException e)
+
+{
+
+returnMessage = "Please send a proper number\n";
+
+}
+
+OutputStreamos = socket.getOutputStream(); 
+
+OutputStreamWriterosw = new OutputStreamWriter(os); 
+
+BufferedWriterbw = new BufferedWriter(osw); 
+
+bw.write(returnMessage);
+
+System.out.println("Message sent to the client is "+returnMessage); 
+
+bw.flush();
+
+}
+
+}
+
+catch (Exception e)
+
+{
+
+e.printStackTrace();
+
+}
+
+finally
+
+{
+
+try
+
+{
+
+socket.close();
+
+}
+
+catch(Exception e){}
+
+}
+
+}
+
+}
+CLIENT
+
+importjava.io.BufferedReader; 
+
+importjava.io.BufferedWriter; 
+
+importjava.io.InputStream; 
+
+importjava.io.InputStreamReader; 
+
+importjava.io.OutputStream; 
+
+importjava.io.OutputStreamWriter; 
+
+importjava.net.InetAddress; 
+
+importjava.net.Socket;
+
+public class Client
+
+{
+
+private static Socket socket;
+
+public static void main(String args[])
+
+{
+
+try
+
+{
+
+String host = "localhost";
+
+int port = 25000;
+
+InetAddress address = InetAddress.getByName(host); 
+
+socket = new Socket(address, port);
+
+OutputStreamos = socket.getOutputStream(); 
+
+OutputStreamWriterosw = new OutputStreamWriter(os); 
+
+BufferedWriterbw = new BufferedWriter(osw);
+
+String number = "4";
+
+String sendMessage = number + "\n"; 
+
+bw.write(sendMessage);
+
+bw.flush();
+
+System.out.println("Message sent to the server : "+sendMessage); 
+
+InputStream is = socket.getInputStream();
+
+InputStreamReaderisr = new InputStreamReader(is); 
+
+BufferedReaderbr = new BufferedReader(isr);
+
+String message = br.readLine();
+
+System.out.println("Message received from the server : " +message);
+
+}
+
+catch (Exception exception)
+
+{
+
+exception.printStackTrace();
+
+}
+
+finally
+
+{
+
+try
+
+{
+
+socket.close();
+
+}
+
+catch(Exception e)
+
+{
+
+e.printStackTrace();
+
+}
+
+}
+
+}
+
+}
