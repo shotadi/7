@@ -1,0 +1,42 @@
+index.html
+<html>
+<head>
+<title>Session Details</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="index.jsp">
+Enter User-Name <input type="text" name="un"><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
+index.jsp
+<%@page import = "java.util.*" session="true"%>
+<html>
+<head>
+<title>Using Sessions to Track Users</title>
+</head>
+<body>
+<%
+String un=request.getParameter("un");
+Integer cnt = (Integer)session.getAttribute("counter"); 
+if (cnt == null) {
+cnt = new Integer(1);
+} else {
+cnt = new Integer(cnt.intValue() + 1);
+}
+session.setAttribute("counter", cnt);
+%>
+<center><H1>User Session Track Information</H1></center>
+<h3><%out.println("Hello "+un);%>,</h3><br> 
+Your Session ID: <%=session.getId()%>
+<br><br>
+Your Session creation time: <%=new Date(session.getCreationTime())%>
+<br><br>
+Last accessed time: <%=new Date(session.getLastAccessedTime())%>
+<br><br>
+You have been here: <%=cnt%> times.
+</body>
+</html>
