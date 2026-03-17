@@ -1,0 +1,91 @@
+index.html
+
+<Html>
+
+<Head><Title>ABC Book Store</Title></Head>
+
+<Body bgcolor=ff0xff text=white>
+
+<h2>Enter the following details</h2>
+
+<form action="SimpleFormHandler.jsp" method="get">
+
+<p><label>Name<input type="text" name="custname" required></label></p>
+
+<p><label>Phone<input type="text" name="phno"></label></p>
+
+<p><label>Email<input type="text" name="eid"></label></p>
+
+<fieldset><legend>Choose your book !</legend>
+
+<p><label><input type="radio" name="taxi" required value="bcn">Computer Networks, 
+
+Andrew S. Tanenbaum</label></p>");
+
+<p><label><input type="radio" name="taxi" required value="bcomp">Cracking C, C++, 
+
+Java Interview, S.G. Ganesh & K.U. Subhash</label></p>
+
+<p><label><input type="radio" name="taxi" required value="bjava">Mastering Java 2, J2SE
+
+1.4, John Zukowski</label></p></fieldset>
+
+<p><label>No. of Copies<input type="text" name="bcps" required></label></p>
+
+<br><input name="bk" type="submit" value="SUBMIT">
+
+</form>
+
+</Body></Html>
+
+index.jsp
+
+<html>
+
+<body>
+
+<%
+
+String custname = request.getParameter("custname"); 
+
+String cb1 = request.getParameter("cb1");
+
+String cb2 = request.getParameter("cb2"); 
+
+String cb3 = request.getParameter("cb3"); 
+
+String bcps=request.getParameter("bcps");
+
+%>
+
+<h1>Hello, <%=custname%> !</h1><br><br>
+
+<u>Following are the books in your purchase cart !</u>
+
+<%
+
+if(cb1=="bcn")
+
+{out.print("Computer Networks, Andrew S. Tanenbaum"); 
+
+out.println(bcps);}
+
+else if(cb2=="bcomp")
+
+{
+
+out.print("Cracking C, C++, Java Interview, S.G. Ganesh & K.U. Subhash"); 
+
+out.println(bcps);}
+
+else if(cb3=="bjava")
+
+{
+
+out.print("Mastering Java 2, J2SE 1.4, John Zukowski"); 
+
+out.println(bcps);}
+
+%>
+
+</body></html
