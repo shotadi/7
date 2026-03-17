@@ -1,0 +1,53 @@
+index.html
+<html>
+<h2>Employee Details for PaySlip</h2><br>
+<form name="form" method="post" action="index.jsp">
+<table>
+<tr><td>Employee Name:</td><td><input type="text" name="ename">
+<tr><td>Employee ID:</td><td><input type="text" name="eid">
+<tr><td>Basic Pay:</td><td><input type="text" name="epay">
+<tr><td><input type="submit" value="Submit">
+</table>
+</form>
+</html>
+index.jsp
+<%
+String ename=request.getParameter("ename"); 
+String eid=request.getParameter("eid");
+intepay=Integer.parseInt(request.getParameter("epay")); 
+doublehra= epay*10/100;
+double da=epay*15/100; 
+doublepf, it; 
+if(epay>3000) 
+pf=epay*12/100;
+else 
+pf=epay*8/100; 
+if(epay>5000) 
+it=epay*11/100; 
+else
+it=0; 
+doublegrosspay=epay+hra+da; 
+double deduction=pf+it; 
+doublenetpay=grosspay-deduction;
+%>
+<html>
+<h3><u>Employee Pay Slip</u></h3><br><br>
+<table>
+<tr><td>Employee Name:</td><td><input type="text" name="ename" 
+value="<%=ename%>" disabled="disabled">
+<tr><td>Employee ID:</td><td><input type="text" name="eid" value="<%=eid%>" 
+disabled="disabled">
+<tr><td>Basic Pay:</td><td><input type="text" name="epay" value="<%=epay%>" 
+disabled="disabled">
+<tr><td>House Rent Allowance:</td><td><input type="text" value="<%=hra%>" 
+disabled="disabled" ></td></tr>
+<tr><td>Dearness Allowance:</td><td><input type="text" value="<%=da%>" 
+disabled="disabled"></td></tr>
+<tr><td>Gross Pay:</td><td><input type="text" value="<%=grosspay%>" 
+disabled="disabled"></td></tr>
+<tr><td>Total Deduction:</td><td><input type="text" value="<%=deduction%>" 
+disabled="disabled" ></td></tr>
+<tr><td>Net Pay (After Deductions):</td><td><input type="text" value="<%=netpay%>" 
+disabled="disabled" ></td></tr>
+</table>
+</html>
