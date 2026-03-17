@@ -1,0 +1,84 @@
+index.html
+
+<html>
+
+<head>
+
+<title>Greetings</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>mm
+
+<body>
+
+<h3>Click here to go... <a href="wishes">wishes</a></h3>
+
+</body>
+
+</html>
+
+greetings.java
+
+import java.io.*; 
+
+importjavax.servlet.*; 
+
+importjavax.servlet.http.*;
+
+public class greetings extends HttpServlet
+
+{
+
+protected void doGet(HttpServletRequestreq, HttpServletResponse res) throws 
+
+ServletException, java.io.IOException
+
+{
+
+res.setContentType("text/html;charset=UTF-8"); 
+
+PrintWriterprn=res.getWriter();
+
+try{ 
+
+prn.println("<Html>");
+
+prn.println("<Head><Title>Servlet Page</Title></Head>"); 
+
+prn.println("<Body bgcolor=ff0x00 text=white>");
+
+prn.println("<Strong><h2>Hello all ! Welcome to Servlet Home ...</h2></Strong>"); 
+
+prn.println("</Body></Html>");
+
+}finally{prn.close();}
+
+}
+
+}
+web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<servlet>
+<servlet-name>wishes</servlet-name>
+<servlet-class>greetings</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>wishes</servlet-name>
+<url-pattern>/wishes</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+<session-config>
+<session-timeout> 
+30
+</session-timeout>
+</session-config>
+</web-app>
