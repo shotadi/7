@@ -1,0 +1,81 @@
+index.html
+<html>
+<head>
+<title>ABC Home Page</title>
+</head>
+<body><h1>ABC Book Store</h1>
+<hr>
+<font size=".5" face=""Arial" color="red">
+<h2>ABC Book Store is one among the Indian top companies. We provide you the books in 
+all categories thru
+online.<p>Most of the books are reasonably priced and also offer priced.</h2>
+<hr>
+</font>
+<h3>If you want to know more and to make an order for the books click the "Register Form" 
+button</h3>
+<form method="GET" action="Booksx"><!--${pageContext.request.contextPath}/-->
+<br>
+<input name="book" type="submit" value="BOOKS" size="20">
+</form>
+</body>
+</html>
+Books.java
+import java.io.*; 
+importjavax.servlet.*; 
+importjavax.servlet.http.*;
+public class Books extends HttpServlet
+{
+protected void doGet(HttpServletRequestreq, HttpServletResponse res) throws 
+ServletException, java.io.IOException
+{
+res.setContentType("text/html;charset=UTF-8"); 
+PrintWriterprn=res.getWriter();
+try{ 
+prn.println("<Html>");
+prn.println("<Head><Title>ABC Book Store</Title></Head>"); 
+prn.println("<Body bgcolor=ff0xff text=white>"); 
+prn.println("<h2><center>Enter the following details</center></h2>"); 
+prn.println("<p><label>Name<input type=\"text\" name=\"custname\" 
+required></label></p>");
+prn.println("<p><label>Phone<input type=\"text\" name=\"phno\"></label></p>"); 
+prn.println("<p><label>Email<input type=\"text\" name=\"eid\"></label></p>"); 
+prn.println("<fieldset><legend>Choose your book !</legend>"); 
+prn.println("<p><label><input type=\"radio\" name=\"taxi\" required value=\"cn\">Computer 
+Networks, Andrew S. Tanenbaum");
+prn.println("</label></p>");
+prn.println("<p><label><input type=\"radio\" name=\"taxi\" required 
+value=\"comp\">Cracking C, C++, Java Interview, S.G. Ganesh & K.U. Subhash");
+prn.println("</label></p>");
+prn.println("<p><label><input type=\"radio\" name=\"taxi\" required 
+value=\"java\">Mastering Java 2, J2SE 1.4, John Zukowski"); 
+prn.println("</label></p></fieldset>");
+prn.println("<p><label>No. of Copies<input type=\"text\" name=\"custname\" 
+required></label></p>");
+prn.println("<br><input name=\"bk\" type=\"submit\" value=\"SUBMIT\" size=\"16\">"); 
+prn.println("</Body></Html>");
+}finally{prn.close();}
+}
+}
+web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<servlet>
+<servlet-name>Booksx</servlet-name>
+<servlet-class>Books</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>Booksx</servlet-name>
+<url-pattern>/Booksx</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+<session-config>
+<session-timeout> 
+30
+</session-timeout>
+</session-config>
+</web-app>
