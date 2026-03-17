@@ -1,0 +1,87 @@
+index.html
+
+<html>
+
+<body>
+
+<h2>Current semester marks</h2>
+
+<form action = "index.jsp" method = "GET">
+
+Object Oriented Analysis Design: <input type = "text" name = "ooad"><br /> 
+
+Web Design: <input type = "text" name = "wd" /><br />
+
+Java Programming: <input type = "text" name = "java" /><br /> 
+
+Information Coding Techniques: <input type = "text" name = "ict" /><br />
+
+<input type = "submit" value = "Submit" />
+
+</form>
+
+</body>
+
+</html>
+
+index.jsp
+
+<html>
+
+<head><title>Result Page</title></head>
+
+<body>
+
+<h1>Total marks obtained and the Percentage </h1>
+
+<%
+
+int m1, m2, m3, m4, m5;
+
+%>
+
+<ul>
+
+<li><p><b>Object Oriented Analysis Design:</b>
+
+<%= m1=Integer.parseInt(request.getParameter("ooad"))%>
+
+</p></li>
+
+<li><p><b>Web Designing:</b>
+
+<%= m2=Integer.parseInt(request.getParameter("wd"))%>
+
+</p></li>
+
+<li><p><b>Java Programming:</b>
+
+<%= m3=Integer.parseInt(request.getParameter("java"))%>
+
+</p></li>
+
+<li><p><b>Information Coding Techniques:</b>
+
+<%= m4=Integer.parseInt(request.getParameter("ict"))%>
+
+</p></li>
+
+</ul>
+
+<br><br>
+
+<% int tot=m1+m2+m3+m4; 
+
+doubleavg=tot/4;
+
+out.print("Total mark obtained: "+tot); 
+
+out.println();
+
+out.print("Percentage obtained:"+avg);
+
+%>
+
+</body>
+
+</html>
