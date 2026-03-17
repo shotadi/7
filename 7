@@ -1,0 +1,135 @@
+index.html
+
+<html>
+
+<head>
+
+<title>BiodataHome Page</title>
+
+</head>
+
+<body><h1>Biodata</h1>
+
+<hr>
+
+<font size=".5" face=""Arial" color="red">
+
+<h2>information about your qualification</h2>
+
+<hr>
+
+</font>
+
+<h3>If you want to know more and to make an order for the books click the "Register Form" 
+
+button</h3>
+
+<form method="GET" action="frmxs"><br>
+
+<input name="book" type="submit" value="BOOKS" size="20">
+
+</form>
+
+</body>
+
+</html>
+
+ServrFrm.java
+
+import java.io.*; 
+
+importjavax.servlet.*;
+
+importjavax.servlet.http.*;
+
+public class ServrFrm extends HttpServlet
+
+{
+
+protected void doGet(HttpServletRequestreq, HttpServletResponse res) throws 
+
+ServletException, java.io.IOException
+
+{
+
+res.setContentType("text/html;charset=UTF-8"); 
+
+PrintWriterprn=res.getWriter();
+
+try{ 
+
+prn.println("<Html>");
+
+prn.println("<Head><Title>BIODATA HOME PAGE</Title></Head>"); 
+
+prn.println("<Body bgcolor=purple text=white>"); 
+
+prn.println("<fieldset><legend>BIODATA</legend>"); 
+
+prn.println("<p><label>Name<input type=\"text\" name=\"custname\" 
+
+required></label></p>");
+
+prn.println("<p><label>Father's Name<input type=\"text\" name=\"fna\"></label></p>"); 
+
+prn.println("<p><label>Gender</label>");
+
+prn.println("<label><input type=\"radio\" name=\"taxi\" required value=\"cn\">male"); 
+
+prn.println("<label><input type=\"radio\" name=\"taxi\" required value=\"cn\">female"); 
+
+prn.println("<p><label>DOB<input type=\"text\" name=\"dob\"></label></p>"); 
+
+prn.println("<u><b>QUALIFICATION DETAILS:</u></b>"):
+
+prn.println(“<select>”);
+
+prn.println("<option value=\"q1\">HSC</option>"); 
+
+prn.println("<option value=\"q2\">Under Graduate</option>"); 
+
+prn.println("<option value=\"q3\">Post Graduate</option>");
+
+prn.println("</select>");
+prn.println("<p><label><b>Area Of Interest</b></label></p>"); 
+prn.println("<p><label><input type=\"checkbox\" name=\"taxi\" required 
+value=\"cn\">Application Development");
+prn.println("</label></p>");
+prn.println("<p><label><input type=\"checkbox\" name=\"taxi\" required 
+value=\"comp\">Web Designer");
+prn.println("</label></p>");
+prn.println("<p><label><input type=\"checkbox\" name=\"taxi\" required 
+value=\"comp\">Software Testing");
+prn.println("</label></p>");
+prn.println("<p><label><input type=\"checkbox\" name=\"taxi\" required 
+value=\"java\">Network");
+prn.println("</label></p>");
+prn.println("<br><input name=\"bk\" type=\"submit\" value=\"Submit\" size=\"16\">"); 
+prn.println("<input name=\"bk\" type=\"submit\" value=\"Cancel\" size=\"16\">"); 
+prn.println("</Body></fieldset></Html>");
+}finally{prn.close();}
+}
+}
+web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<servlet>
+<servlet-name>frmxs</servlet-name>
+<servlet-class>ServrFrm</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>frmxs</servlet-name>
+<url-pattern>/frmxs</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+<session-config>
+<session-timeout> 
+30
+</session-timeout>
+</session-config>
+</web-app>
